@@ -62,6 +62,7 @@ function Projects() {
     () => projects.map(() => false),
   )
   const cardRefs = useRef<Array<HTMLElement | null>>([])
+  const latestVisibleIndex = visibleCards.lastIndexOf(true)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -99,7 +100,7 @@ function Projects() {
   return (
     <section
       aria-labelledby="projects-title"
-      className="bg-blue-950 px-6 py-16 text-slate-100 md:px-10"
+      className="bg-blue-950 px-6 py-20 text-slate-100 md:px-10"
     >
       <div className="mx-auto max-w-7xl">
         <header className="mb-10 md:mb-12">
@@ -115,27 +116,45 @@ function Projects() {
         <div aria-label="Project list area" role="region">
           <ul
             aria-label="Project explorer folders"
-            className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3"
+            className="mx-auto flex w-full max-w-4xl flex-col"
           >
             {projects.map((project, index) => (
-              <li key={project.name}>
+              <li
+                key={project.name}
+                className={index === 0 ? '' : '-mt-2 md:-mt-6'}
+                style={{ zIndex: index + 1 }}
+              >
                 <article
                   ref={(element) => {
                     cardRefs.current[index] = element
                   }}
                   data-project-index={index}
                   aria-label={`${project.name} folder card`}
-                  className={`rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-sm transform-gpu transition duration-700 ease-out ${project.accent} ${
+                  className={`relative rounded-2xl border border-slate-700 bg-slate-900 p-5 shadow-sm transform-gpu transition duration-700 ease-out hover:-translate-y-1 ${project.accent} ${
+                    latestVisibleIndex === index
+                      ? 'ring-1 ring-slate-500/70'
+                      : 'ring-0'
+                  } ${
                     visibleCards[index]
                       ? 'translate-y-0 opacity-100'
                       : 'translate-y-4 opacity-0'
                   }`}
                   style={{
                     transitionDelay: `${index * 60}ms`,
+                    opacity:
+                      latestVisibleIndex > index && latestVisibleIndex !== -1
+                        ? 0.72
+                        : visibleCards[index]
+                          ? 1
+                          : 0,
                   }}
                 >
+                  <div
+                    aria-hidden="true"
+                    className={`absolute -top-3 left-5 h-3 w-24 rounded-t-md border border-b-0 border-slate-700 bg-slate-900 ${project.accent}`}
+                  />
                   <header className="mb-4">
-                    <p className="text-xs uppercase tracking-wide text-slate-400">
+                    <p className="text-xs uppercase tracking-wide text-amber-300/80">
                       Folder
                     </p>
                     <h3 className="mt-1 text-lg font-medium text-slate-100">
@@ -155,7 +174,7 @@ function Projects() {
                       {project.techStack.map((tech) => (
                         <li
                           key={tech}
-                          className="rounded-md border border-slate-700 bg-slate-800/80 px-2.5 py-1 text-xs text-slate-200"
+                          className="rounded-md border border-slate-700 bg-slate-800 px-2.5 py-1 text-xs text-slate-200"
                         >
                           {tech}
                         </li>

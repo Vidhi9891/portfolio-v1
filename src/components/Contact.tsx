@@ -2,7 +2,7 @@ function Contact() {
   return (
     <section
       aria-labelledby="contact-title"
-      className="bg-blue-950 px-6 py-16 text-slate-100 md:px-10"
+      className="bg-blue-950 px-6 py-20 text-slate-100 md:px-10"
     >
       <div className="mx-auto max-w-7xl">
         <header className="mb-10 md:mb-12">
@@ -18,7 +18,7 @@ function Contact() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
           <section
             aria-labelledby="contact-info-title"
-            className="rounded-2xl border border-slate-700 bg-slate-900/80 p-6"
+            className="rounded-2xl border border-slate-700 bg-slate-900 p-6"
           >
             <h3 id="contact-info-title" className="text-lg font-medium">
               Let&apos;s Connect
@@ -63,7 +63,7 @@ function Contact() {
 
           <section
             aria-labelledby="contact-form-title"
-            className="rounded-2xl border border-slate-700 bg-slate-900/80 p-6"
+            className="rounded-2xl border border-slate-700 bg-slate-900 p-6"
           >
             <h3 id="contact-form-title" className="text-lg font-medium">
               Send a Message
@@ -78,7 +78,7 @@ function Contact() {
                   id="contact-name"
                   name="name"
                   type="text"
-                  className="w-full rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 outline-none"
+                  className="w-full rounded-md border border-slate-700 bg-blue-950 px-3 py-2 text-slate-100 outline-none"
                 />
               </div>
 
@@ -90,7 +90,7 @@ function Contact() {
                   id="contact-email"
                   name="email"
                   type="email"
-                  className="w-full rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 outline-none"
+                  className="w-full rounded-md border border-slate-700 bg-blue-950 px-3 py-2 text-slate-100 outline-none"
                 />
               </div>
 
@@ -102,7 +102,7 @@ function Contact() {
                   id="contact-message"
                   name="message"
                   rows={5}
-                  className="w-full rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 outline-none"
+                  className="w-full rounded-md border border-slate-700 bg-blue-950 px-3 py-2 text-slate-100 outline-none"
                 />
               </div>
 

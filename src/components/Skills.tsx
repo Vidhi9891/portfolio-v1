@@ -70,7 +70,7 @@ function Skills() {
   return (
     <section
       aria-labelledby="skills-title"
-      className="bg-blue-950 px-6 py-16 text-slate-100 md:px-10"
+      className="bg-blue-950 px-6 py-20 text-slate-100 md:px-10"
     >
       <div className="mx-auto max-w-7xl">
         <header className="mb-10">
@@ -84,11 +84,11 @@ function Skills() {
         </header>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:grid-rows-3">
-          <article className="rounded-xl border border-slate-700 bg-slate-900/70 p-5 lg:col-start-1 lg:row-start-1 lg:place-self-end">
+          <article className="rounded-xl border border-slate-700 bg-slate-900 p-5 lg:col-start-1 lg:row-start-1 lg:place-self-end">
             <h3 className="text-lg font-medium">{skillGroups[0].title}</h3>
             <ul className="mt-4 space-y-3">
               {skillGroups[0].skills.map((skill) => (
-                <li key={skill.name} className="border-l border-slate-700 pl-3">
+                <li key={skill.name} className="border-l border-emerald-700/60 pl-3">
                   <p className="text-sm font-medium text-slate-100">
                     {skill.name}
                   </p>
@@ -98,11 +98,11 @@ function Skills() {
             </ul>
           </article>
 
-          <article className="rounded-xl border border-slate-700 bg-slate-900/70 p-5 lg:col-start-3 lg:row-start-1 lg:place-self-start">
+          <article className="rounded-xl border border-slate-700 bg-slate-900 p-5 lg:col-start-3 lg:row-start-1 lg:place-self-start">
             <h3 className="text-lg font-medium">{skillGroups[1].title}</h3>
             <ul className="mt-4 space-y-3">
               {skillGroups[1].skills.map((skill) => (
-                <li key={skill.name} className="border-l border-slate-700 pl-3">
+                <li key={skill.name} className="border-l border-emerald-700/60 pl-3">
                   <p className="text-sm font-medium text-slate-100">
                     {skill.name}
                   </p>
@@ -114,7 +114,7 @@ function Skills() {
 
           <section
             aria-labelledby="skills-hub-title"
-            className="rounded-2xl border-2 border-slate-600 bg-slate-900 px-8 py-10 text-center shadow-sm lg:col-start-2 lg:row-start-2"
+            className="rounded-2xl border border-emerald-700/50 bg-slate-900 px-8 py-10 text-center lg:col-start-2 lg:row-start-2"
           >
             <h3 id="skills-hub-title" className="text-2xl font-bold tracking-wide">
               SKILLS
@@ -125,11 +125,11 @@ function Skills() {
             </p>
           </section>
 
-          <article className="rounded-xl border border-slate-700 bg-slate-900/70 p-5 lg:col-start-1 lg:row-start-3 lg:place-self-end">
+          <article className="rounded-xl border border-slate-700 bg-slate-900 p-5 lg:col-start-1 lg:row-start-3 lg:place-self-end">
             <h3 className="text-lg font-medium">{skillGroups[2].title}</h3>
             <ul className="mt-4 space-y-3">
               {skillGroups[2].skills.map((skill) => (
-                <li key={skill.name} className="border-l border-slate-700 pl-3">
+                <li key={skill.name} className="border-l border-emerald-700/60 pl-3">
                   <p className="text-sm font-medium text-slate-100">
                     {skill.name}
                   </p>
@@ -139,11 +139,11 @@ function Skills() {
             </ul>
           </article>
 
-          <article className="rounded-xl border border-slate-700 bg-slate-900/70 p-5 lg:col-start-3 lg:row-start-3 lg:place-self-start">
+          <article className="rounded-xl border border-slate-700 bg-slate-900 p-5 lg:col-start-3 lg:row-start-3 lg:place-self-start">
             <h3 className="text-lg font-medium">{skillGroups[3].title}</h3>
             <ul className="mt-4 space-y-3">
               {skillGroups[3].skills.map((skill) => (
-                <li key={skill.name} className="border-l border-slate-700 pl-3">
+                <li key={skill.name} className="border-l border-emerald-700/60 pl-3">
                   <p className="text-sm font-medium text-slate-100">
                     {skill.name}
                   </p>
@@ -158,14 +158,14 @@ function Skills() {
           aria-hidden="true"
           className="pointer-events-none mt-0 hidden lg:grid lg:grid-cols-3 lg:grid-rows-3 lg:gap-6"
         >
-          <div className="col-start-1 row-start-1 place-self-center h-10 w-px bg-slate-700/70" />
-          <div className="col-start-3 row-start-1 place-self-center h-10 w-px bg-slate-700/70" />
-          <div className="col-start-1 row-start-3 place-self-center h-10 w-px bg-slate-700/70" />
-          <div className="col-start-3 row-start-3 place-self-center h-10 w-px bg-slate-700/70" />
-          <div className="col-start-2 row-start-1 place-self-center h-8 w-px bg-slate-700/70" />
-          <div className="col-start-2 row-start-3 place-self-center h-8 w-px bg-slate-700/70" />
-          <div className="col-start-1 row-start-2 place-self-center h-px w-12 bg-slate-700/70" />
-          <div className="col-start-3 row-start-2 place-self-center h-px w-12 bg-slate-700/70" />
+          <div className="col-start-1 row-start-1 place-self-center h-10 w-px bg-emerald-700/40" />
+          <div className="col-start-3 row-start-1 place-self-center h-10 w-px bg-emerald-700/40" />
+          <div className="col-start-1 row-start-3 place-self-center h-10 w-px bg-emerald-700/40" />
+          <div className="col-start-3 row-start-3 place-self-center h-10 w-px bg-emerald-700/40" />
+          <div className="col-start-2 row-start-1 place-self-center h-8 w-px bg-emerald-700/40" />
+          <div className="col-start-2 row-start-3 place-self-center h-8 w-px bg-emerald-700/40" />
+          <div className="col-start-1 row-start-2 place-self-center h-px w-12 bg-emerald-700/40" />
+          <div className="col-start-3 row-start-2 place-self-center h-px w-12 bg-emerald-700/40" />
         </div>
       </div>
     </section>

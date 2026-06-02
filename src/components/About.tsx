@@ -1,7 +1,7 @@
 function About() {
   return (
     <section aria-labelledby="about-title" className="bg-blue-950 text-slate-100">
-      <div className="mx-auto w-full max-w-7xl px-6 py-16 md:px-10">
+      <div className="mx-auto w-full max-w-7xl px-6 pb-20 pt-8 md:px-10">
         <header className="mb-8 md:mb-10">
           <h2 id="about-title" className="text-2xl font-semibold md:text-3xl">
             About
@@ -12,9 +12,9 @@ function About() {
           </p>
         </header>
 
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10">
-          <figure className="rounded-2xl border border-slate-700/60 bg-slate-900/70 p-6">
-            <div className="flex min-h-80 items-center justify-center rounded-xl border border-dashed border-slate-600 bg-slate-900 text-slate-300">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14">
+          <figure className="p-2">
+            <div className="flex min-h-80 items-center justify-center rounded-2xl border border-slate-700/70 bg-slate-900 text-slate-300">
               Portrait / Illustration Placeholder
             </div>
             <figcaption className="mt-4 text-sm text-slate-400">
@@ -22,11 +22,8 @@ function About() {
             </figcaption>
           </figure>
 
-          <div className="space-y-4">
-            <article
-              aria-labelledby="who-i-am-title"
-              className="rounded-xl border border-slate-700/60 bg-slate-900/70 p-5"
-            >
+          <div className="max-w-2xl space-y-8">
+            <article aria-labelledby="who-i-am-title">
               <h3 id="who-i-am-title" className="text-lg font-medium">
                 Who I Am
               </h3>
@@ -37,10 +34,7 @@ function About() {
               </p>
             </article>
 
-            <article
-              aria-labelledby="current-focus-title"
-              className="rounded-xl border border-slate-700/60 bg-slate-900/70 p-5"
-            >
+            <article aria-labelledby="current-focus-title">
               <h3 id="current-focus-title" className="text-lg font-medium">
                 Current Focus
               </h3>
@@ -51,10 +45,7 @@ function About() {
               </p>
             </article>
 
-            <article
-              aria-labelledby="design-interests-title"
-              className="rounded-xl border border-slate-700/60 bg-slate-900/70 p-5"
-            >
+            <article aria-labelledby="design-interests-title">
               <h3 id="design-interests-title" className="text-lg font-medium">
                 Design Interests
               </h3>
@@ -65,10 +56,7 @@ function About() {
               </p>
             </article>
 
-            <article
-              aria-labelledby="development-interests-title"
-              className="rounded-xl border border-slate-700/60 bg-slate-900/70 p-5"
-            >
+            <article aria-labelledby="development-interests-title">
               <h3
                 id="development-interests-title"
                 className="text-lg font-medium"
@@ -82,10 +70,7 @@ function About() {
               </p>
             </article>
 
-            <article
-              aria-labelledby="future-aspirations-title"
-              className="rounded-xl border border-slate-700/60 bg-slate-900/70 p-5"
-            >
+            <article aria-labelledby="future-aspirations-title">
               <h3 id="future-aspirations-title" className="text-lg font-medium">
                 Future Aspirations
               </h3>

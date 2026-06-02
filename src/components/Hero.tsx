@@ -1,24 +1,17 @@
 function Hero() {
-  const photoBoothFrames = [
-    { title: 'Still Figuring It Out', description: 'Placeholder frame content.' },
-    { title: 'Builder', description: 'Placeholder frame content.' },
-    { title: 'Designer', description: 'Placeholder frame content.' },
-    { title: 'Student', description: 'Placeholder frame content.' },
-  ] as const
-
   return (
     <section
       aria-labelledby="hero-name"
       className="bg-blue-950 text-slate-100"
     >
-      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-10 px-6 py-16 md:justify-center md:px-10 lg:flex-row lg:items-stretch lg:gap-0">
+      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-12 px-6 pb-10 pt-20 md:justify-center md:px-10 lg:flex-row lg:items-center lg:gap-14">
 
         {/* PHOTO BOOTH */}
         <section
           aria-labelledby="photo-booth-title"
-          className="w-full rounded-2xl border border-slate-700/60 bg-slate-900/70 p-6 lg:rounded-r-none lg:border-r-0"
+          className="w-full"
         >
-          <h2 id="photo-booth-title" className="text-xl font-semibold">
+          <h2 id="photo-booth-title" className="text-xl font-semibold text-slate-100">
             Photo Booth Journey
           </h2>
 
@@ -28,17 +21,22 @@ function Hero() {
 
           <div
             aria-label="Film strip container"
-            className="mt-6 rounded-xl border border-slate-700/60 bg-slate-900 p-4"
+            className="mt-6 rounded-xl border border-slate-700/70 bg-blue-950 p-4"
           >
             <ol
               aria-label="Photo booth film strip frames"
               className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
             >
-              {photoBoothFrames.map((frame) => (
+              {[
+                { title: 'Still Figuring It Out', description: 'Placeholder frame content.' },
+                { title: 'Builder', description: 'Placeholder frame content.' },
+                { title: 'Designer', description: 'Placeholder frame content.' },
+                { title: 'Student', description: 'Placeholder frame content.' },
+              ].map((frame) => (
                 <li key={frame.title}>
                   <article
                     aria-label={`Photo frame: ${frame.title}`}
-                    className="h-full rounded-lg border border-slate-700 bg-slate-800 p-4"
+                    className="h-full rounded-lg border border-slate-700/80 bg-slate-900 p-4"
                   >
                     <h3 className="text-base font-medium">
                       {frame.title}
@@ -56,14 +54,14 @@ function Hero() {
         {/* HERO INTRO */}
         <section
           aria-labelledby="hero-intro-title"
-          className="w-full rounded-2xl border border-slate-700/60 bg-slate-900/70 p-6 lg:rounded-l-none"
+          className="w-full"
         >
           <h2 id="hero-intro-title" className="sr-only">
             Hero Intro
           </h2>
 
           <header>
-            <h1 id="hero-name" className="text-3xl font-bold md:text-4xl">
+            <h1 id="hero-name" className="text-4xl font-bold tracking-tight md:text-5xl">
               Your Name
             </h1>
 
@@ -90,7 +88,7 @@ function Hero() {
 
             <button
               type="button"
-              className="rounded-md border border-slate-500 px-5 py-2.5 font-medium text-slate-100"
+              className="rounded-md border border-slate-600 px-5 py-2.5 font-medium text-slate-100"
             >
               Contact
             </button>
