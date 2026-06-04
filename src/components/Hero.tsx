@@ -11,16 +11,9 @@ function Hero() {
           aria-labelledby="photo-booth-title"
           className="w-full lg:w-1/2"
         >
-          <div className="flex items-center gap-2">
-            <span className="text-[#fb7185] font-mono text-xs font-bold uppercase tracking-wider">// 01. HISTORY</span>
-            <h2 id="photo-booth-title" className="text-sm font-bold tracking-widest uppercase text-slate-100 font-mono">
-              Photo Booth Journey
-            </h2>
-          </div>
-
-          <p className="mt-2 text-sm text-slate-400">
-            A visual growth timeline showing active learning and building stages.
-          </p>
+          <h2 id="photo-booth-title" className="text-sm font-semibold tracking-wide text-slate-300">
+            Photo Booth Journey
+          </h2>
 
           <div
             aria-label="Film strip container"
@@ -28,26 +21,22 @@ function Hero() {
           >
             <ol
               aria-label="Photo booth film strip frames"
-              className="grid grid-cols-1 gap-4 md:grid-cols-2"
+              className="grid grid-cols-2 gap-3 lg:grid-cols-4"
             >
               {[
-                { title: 'Still Figuring It Out', description: 'Exploring code fundamentals, syntax, and finding the joy of building.', accentClass: 'border-t-2 border-t-[#3b82f6]' },
-                { title: 'Builder', description: 'Translating visual mockups into clean, semantic, and interactive web layouts.', accentClass: 'border-t-2 border-t-[#fb7185]' },
-                { title: 'Designer', description: 'Striving for visual balance, consistent typography, and clean spacing.', accentClass: 'border-t-2 border-t-[#f59e0b]' },
-                { title: 'Student', description: 'Continuously reading docs, testing systems, and growing step-by-step.', accentClass: 'border-t-2 border-t-[#34d399]' },
+                { text: 'Exploring direction', accentClass: 'border-t-2 border-t-[#3b82f6]' },
+                { text: 'Learning fundamentals', accentClass: 'border-t-2 border-t-[#fb7185]' },
+                { text: 'Designing interfaces', accentClass: 'border-t-2 border-t-[#f59e0b]' },
+                { text: 'Building systems', accentClass: 'border-t-2 border-t-[#34d399]' },
               ].map((frame) => (
-                <li key={frame.title}>
-                  <article
-                    aria-label={`Photo frame: ${frame.title}`}
-                    className={`h-full rounded-lg border border-[#20315c] bg-[#0b132b] p-5 transition-all duration-300 hover:border-slate-500 ${frame.accentClass}`}
+                <li key={frame.text}>
+                  <div
+                    className={`rounded-lg border border-[#20315c] bg-[#0b132b] px-4 py-5 text-center ${frame.accentClass}`}
                   >
-                    <h3 className="text-sm font-bold text-slate-100 tracking-tight">
-                      {frame.title}
-                    </h3>
-                    <p className="mt-2 text-xs text-slate-400 leading-relaxed">
-                      {frame.description}
-                    </p>
-                  </article>
+                    <span className="text-xs font-medium text-slate-300 leading-snug">
+                      {frame.text}
+                    </span>
+                  </div>
                 </li>
               ))}
             </ol>
@@ -60,24 +49,22 @@ function Hero() {
           className="w-full lg:w-1/2 flex flex-col justify-center"
         >
           <h2 id="hero-intro-title" className="sr-only">
-            Hero Intro
+            Introduction
           </h2>
 
           <header>
-            <span className="text-[#3b82f6] font-mono text-xs font-bold tracking-widest uppercase block mb-3">
-              // HELLO WORLD
-            </span>
             <h1 id="hero-name" className="text-4xl font-extrabold tracking-tight text-slate-50 md:text-5xl lg:text-6xl font-heading leading-tight">
               Your Name
             </h1>
 
-            <p className="mt-3 text-lg font-medium text-[#34d399] font-mono">
-              Creative Developer & Builder
+            <p className="mt-3 text-lg text-slate-400">
+              developer &amp; builder
             </p>
           </header>
 
           <p className="mt-6 max-w-prose text-base text-slate-300 leading-relaxed">
-            I am a design-focused developer building web projects that pair structural clean code with custom interactive details. Actively learning and improving my craft daily.
+            Short introduction about current focus, ongoing exploration, and the
+            work being built right now.
           </p>
 
           <nav
