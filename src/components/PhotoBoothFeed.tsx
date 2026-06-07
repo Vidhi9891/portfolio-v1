@@ -1,6 +1,61 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// ==========================================
+// 1. HERO WRAPPER
+// ==========================================
+const Hero: React.FC = () => {
+  return (
+    <section className="relative w-full min-h-screen flex flex-col justify-center pt-24 pb-12 overflow-hidden bg-white text-slate-900 font-sans">
+      
+      {/* Identity & Intro Block */}
+      <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 flex flex-col gap-6 mb-2">
+        <div className="max-w-2xl">
+          
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight !text-slate-900 !opacity-100 mb-3">
+            Vidhi Tiwari
+          </h1>
+          
+          {/* Updated Small Header */}
+          <h2 className="text-lg md:text-xl !text-slate-700 font-mono font-semibold tracking-tight mb-6">
+            Frontend. Design. Systems.
+          </h2>
+          
+          {/* Updated Small Paragraph */}
+          <p className="text-base md:text-lg text-slate-600 leading-relaxed mb-8 max-w-xl">
+            Exploring frontend development, design, and the craft of creating things people enjoy using. Every project is another step toward becoming a better builder.
+          </p>
+          
+          {/* CTA Group */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a 
+              href="#projects" 
+              className="inline-flex justify-center items-center bg-slate-900 text-white px-7 py-3 rounded-lg font-medium hover:bg-slate-800 transition-colors shadow-sm active:scale-95"
+            >
+              View Projects
+            </a>
+            <a 
+              href="#about" 
+              className="inline-flex justify-center items-center bg-white text-slate-700 border border-slate-300 px-7 py-3 rounded-lg font-medium hover:bg-slate-50 transition-colors active:scale-95"
+            >
+              About Me
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      {/* The Photo Booth Feed Component */}
+      <PhotoBoothFeed />
+      
+    </section>
+  );
+};
+
+// ==========================================
+// 2.  PHOTO BOOTH COMPONENTS
+// ==========================================
+
 // --- Data Structure ---
 interface Ticket {
   id: number;
@@ -63,27 +118,28 @@ const TicketCard: React.FC<{ ticket: Ticket }> = ({ ticket }) => {
     </motion.div>
   );
 };
-
 // --- PhotoBoothFeed Component ---
 const PhotoBoothFeed: React.FC = () => {
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Safely step through the 4 milestones and stop
+  // Endless loop that cycles through the data
   useEffect(() => {
-    if (currentIndex < initialTicketsData.length) {
-      const timer = setTimeout(() => {
-        const newTicket: Ticket = {
-          id: currentIndex,
-          title: initialTicketsData[currentIndex].title,
-        };
-        // unshift adds the new ticket to the left (index 0) and slides the rest right
-        setTickets((prev) => [newTicket, ...prev]);
-        setCurrentIndex((prev) => prev + 1);
-      }, 1500);
+    const timer = setTimeout(() => {
+      // Use modulo to loop back to 0 after reaching the end of the initial data
+      const dataIndex = currentIndex % initialTicketsData.length;
+      
+      const newTicket: Ticket = {
+        id: currentIndex, // Keep ID strictly increasing so Framer Motion knows it's a new item
+        title: initialTicketsData[dataIndex].title,
+      };
+      
+      // Add new ticket and slice the array to keep only the latest 8 items in the DOM (prevents lag)
+      setTickets((prev) => [newTicket, ...prev].slice(0, 8));
+      setCurrentIndex((prev) => prev + 1);
+    }, 1500);
 
-      return () => clearTimeout(timer);
-    }
+    return () => clearTimeout(timer);
   }, [currentIndex]);
 
   // Gradient mask to smoothly fade overflow items on the right side
@@ -122,4 +178,4 @@ const PhotoBoothFeed: React.FC = () => {
   );
 };
 
-export default PhotoBoothFeed;
+export default Hero;

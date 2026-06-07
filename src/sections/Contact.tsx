@@ -7,9 +7,7 @@ function Contact() {
     >
       <div className="mx-auto max-w-7xl">
         <header className="mb-10 md:mb-14">
-          <span className="text-[#3b82f6] font-mono text-xs font-bold tracking-widest uppercase block mb-2">
-            // 05. REACH OUT
-          </span>
+          
           <h2 id="contact-title" className="text-3xl font-extrabold tracking-tight text-slate-50 md:text-4xl font-heading">
             Get In Touch
           </h2>

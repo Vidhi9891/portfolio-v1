@@ -99,7 +99,6 @@ function Projects() {
 
   const handleCardClick = (index: number) => {
     if (expandedIndex === index) {
-      // Second click on active elements: prepare navigation hook for future project detail pages
       console.log(`Navigation Hook Triggered: /project/${projects[index].name.toLowerCase().replace(/\s+/g, '-')}`)
       setTodoMessage(`Navigation Hook Triggered: Loading Case Study for "${projects[index].name}"...`)
       setTimeout(() => setTodoMessage(null), 3000)
@@ -111,7 +110,8 @@ function Projects() {
 
   const getCardMargin = (index: number) => {
     if (expandedIndex === null) {
-      return index === 0 ? 'mt-0' : '-mt-2'
+      // Changed from -mt-2 to -mt-4 to ensure overlapping and remove the dark background gap
+      return index === 0 ? 'mt-0' : '-mt-4'
     }
     if (index === expandedIndex) {
       return index === 0 ? 'mt-0 mb-6 md:mb-8' : 'mt-6 md:mt-8 mb-6 md:mb-8'
@@ -119,12 +119,28 @@ function Projects() {
     if (index === expandedIndex + 1) {
       return 'mt-0'
     }
-    return index === 0 ? 'mt-0' : '-mt-2'
+    // Changed from -mt-2 to -mt-4 here as well
+    return index === 0 ? 'mt-0' : '-mt-4'
   }
 
   const getCardOpacity = (index: number) => {
     if (expandedIndex === null) return 'opacity-100'
     return index === expandedIndex ? 'opacity-100 scale-[1.015]' : 'opacity-45 hover:opacity-75'
+  }
+
+  // Helper to determine the height class based on whether it's the last item and its state
+  const getHeightClass = (index: number, isExpanded: boolean) => {
+    if (isExpanded) {
+      return 'max-h-[950px]'
+    }
+    // If it's the last item and NO folder is expanded, show a larger block
+    if (index === projects.length - 1 && expandedIndex === null) {
+      // 120px gives a nice solid block of color at the bottom before clicking
+      return 'max-h-[120px]' 
+    }
+    // Default collapsed state for all other items
+    // Increased from max-h-16 to max-h-20 to help cover the gaps
+    return 'max-h-20 overflow-hidden'
   }
 
   return (
@@ -135,9 +151,6 @@ function Projects() {
     >
       <div className="mx-auto max-w-5xl">
         <header className="mb-14 text-center md:mb-20">
-          <span className="text-[#fb7185] font-mono text-xs font-bold tracking-widest uppercase block mb-2">
-            // 04. SELECTION
-          </span>
           <h2 id="projects-title" className="text-3xl font-extrabold tracking-tight text-slate-50 md:text-4xl font-heading">
             Projects Explorer
           </h2>
@@ -155,15 +168,13 @@ function Projects() {
                   key={project.name}
                   className={`w-full transition-all duration-500 ease-in-out transform-gpu flex flex-col ${getCardMargin(
                     index,
-                  )} ${getCardOpacity(index)} ${isExpanded ? 'max-h-[950px]' : 'max-h-16 overflow-hidden'}`}
+                  )} ${getCardOpacity(index)} ${getHeightClass(index, isExpanded)}`}
                   style={{
                     zIndex: isExpanded ? 50 : index,
-                    // Use drop-shadow filter to automatically outline both the tab and the body perfectly
                     filter: isExpanded
                       ? 'drop-shadow(0 25px 30px rgba(0, 0, 0, 0.5))'
                       : 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15))',
                   }}
-                  // Click anywhere on the collapsed card to expand
                   onClick={!isExpanded ? () => handleCardClick(index) : undefined}
                 >
                   {/* Folder Tab */}
@@ -172,7 +183,7 @@ function Projects() {
                       isExpanded
                         ? (e) => {
                             e.stopPropagation()
-                            handleCardClick(index) // Click tab of active folder to trigger case study
+                            handleCardClick(index)
                           }
                         : undefined
                     }
@@ -196,10 +207,9 @@ function Projects() {
                     className={`w-full bg-gradient-to-br ${
                       project.theme
                     } rounded-tr-2xl rounded-b-2xl border-t border-white/10 transition-all duration-500 ease-in-out flex-1 relative`}
-                    // Click inside body does nothing (isolates clicks from parent li when expanded)
                     onClick={isExpanded ? (e) => e.stopPropagation() : undefined}
                   >
-                    {/* Collapse Button (Only visible when expanded) */}
+                    {/* Collapse Button */}
                     {isExpanded && (
                       <button
                         onClick={(e) => {
@@ -221,26 +231,20 @@ function Projects() {
                       </button>
                     )}
 
-                    {/* Folder Body Content */}
-                    <div className="px-6 py-8 md:px-8 md:py-10">
+                    {/* Folder Body Content - Fades out if not fully expanded */}
+                    <div className={`px-6 py-8 md:px-8 md:py-10 transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0'}`}>
                       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                        {/* Left Side: Metadata & Links */}
+                        {/* Left Side */}
                         <div className="flex flex-col justify-between">
                           <div>
-                            <h3
-                              className={`text-xl md:text-2xl font-extrabold tracking-tight mb-4 ${project.text}`}
-                            >
+                            <h3 className={`text-xl md:text-2xl font-extrabold tracking-tight mb-4 ${project.text}`}>
                               {project.name}
                             </h3>
-                            <p
-                              className={`text-sm md:text-base leading-relaxed opacity-95 ${project.text}`}
-                            >
+                            <p className={`text-sm md:text-base leading-relaxed opacity-95 ${project.text}`}>
                               {project.description}
                             </p>
                             <div className="mt-6">
-                              <h4
-                                className={`text-xs uppercase tracking-wider font-bold opacity-60 mb-2.5 ${project.text}`}
-                              >
+                              <h4 className={`text-xs uppercase tracking-wider font-bold opacity-60 mb-2.5 ${project.text}`}>
                                 Tech Stack
                               </h4>
                               <div className="flex flex-wrap gap-2">
@@ -275,15 +279,10 @@ function Projects() {
                           </div>
                         </div>
 
-                        {/* Right Side: Preview & Explore Action */}
+                        {/* Right Side */}
                         <div className="flex flex-col justify-between gap-4">
-                          {/* Visual Gradient Block Placeholder */}
-                          <div
-                            className={`w-full h-44 bg-gradient-to-br ${project.placeholder} rounded-xl shadow-inner border border-white/10 flex flex-col items-center justify-center p-4 text-center`}
-                          >
-                            <span
-                              className={`text-xs font-bold uppercase tracking-wider opacity-50 ${project.text}`}
-                            >
+                          <div className={`w-full h-44 bg-gradient-to-br ${project.placeholder} rounded-xl shadow-inner border border-white/10 flex flex-col items-center justify-center p-4 text-center`}>
+                            <span className={`text-xs font-bold uppercase tracking-wider opacity-50 ${project.text}`}>
                               Visual Preview
                             </span>
                             <span className={`text-[10px] mt-1 opacity-40 ${project.text}`}>
@@ -291,7 +290,6 @@ function Projects() {
                             </span>
                           </div>
 
-                          {/* Case study trigger */}
                           <button
                             onClick={(e) => {
                               e.stopPropagation()
@@ -304,7 +302,6 @@ function Projects() {
                         </div>
                       </div>
 
-                      {/* Simple Inline TODO Navigation Notification */}
                       {todoMessage && (
                         <div className="mt-6 p-3.5 rounded-xl bg-black/25 border border-white/10 text-xs text-amber-300 font-bold text-center animate-pulse">
                           {todoMessage}

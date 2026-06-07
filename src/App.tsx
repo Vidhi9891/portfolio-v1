@@ -1,10 +1,9 @@
 import Navbar from './components/Navbar'
-//import Hero from './components/Hero'
 import PhotoBoothFeed from './components/PhotoBoothFeed'
-import AboutSection from './components/About'
-import Skills from './components/Skills'
-import Projects from './components/Projects'
-import Contact from './components/Contact'
+import SkillsMap from './components/SkillsMap'
+import AboutSection from './sections/About'
+import Projects from './sections/Projects'
+import Contact from './sections/Contact'
 
 function App() {
   return (
@@ -12,7 +11,7 @@ function App() {
       <Navbar />
       <PhotoBoothFeed />
       <AboutSection />
-      <Skills />
+      <SkillsMap />
       <Projects />
       <Contact />
     </main>
