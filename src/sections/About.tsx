@@ -41,8 +41,7 @@ const AboutSection: React.FC = () => {
           {/* Section A: Intro Line */}
           <div>
             <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 leading-tight">
-              I translate complex ideas into intuitive, high-performance digital experiences.
-            </h2>
+              Learning to bridge design, frontend development, and computer science. </h2>
           </div>
 
           {/* Section B: Current State */}
@@ -53,15 +52,15 @@ const AboutSection: React.FC = () => {
             <ul className="grid grid-cols-1 gap-3 text-slate-600">
               <li className="flex items-start gap-3">
                 <span className="font-mono text-blue-500 text-sm select-none">→</span>
-                <span>Deepening knowledge in data structures, algorithms, and frontend architecture.</span>
+                <span>Strengthening my foundations in data structures and algorithms.</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="font-mono text-blue-500 text-sm select-none">→</span>
-                <span>Building highly reusable, robust UI systems with micro-interactions.</span>
+                <span>Building frontend projects with React, TypeScript, and Tailwind CSS.</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="font-mono text-blue-500 text-sm select-none">→</span>
-                <span>Exploring the fine balance between user interface design and structural performance.</span>
+                <span>Learning how design decisions, user experience, and implementation work together.</span>
               </li>
             </ul>
           </div>
@@ -72,7 +71,8 @@ const AboutSection: React.FC = () => {
               Direction
             </h3>
             <p className="text-slate-600 leading-relaxed">
-              My goal is to grow into a thoroughly product-minded engineer—someone who bridges the gap between raw implementation and visual intent. I believe beautiful code means nothing if the execution doesn't treat the end-user with empathy.
+              My long-term goal is to become a product-minded engineer who can bridge the gap between design and development.
+              I'm particularly interested in creating digital experiences that are both functional and intuitive, while continuing to improve my technical foundations.
             </p>
           </div>
 
@@ -82,7 +82,8 @@ const AboutSection: React.FC = () => {
               Personal Layer
             </h3>
             <p className="text-slate-600 leading-relaxed">
-              When I'm away from a compiler, I explore a mix of creative and technical pursuits. I'm driven by continuous curiosity regarding visual design principles, video editing, systems thinking, and structural storytelling in anime.
+              Outside of programming, I enjoy video editing, exploring interface design, watching anime, and studying how visual storytelling shapes experiences.
+              Many of these interests influence how I think about design, interaction, and communication.
             </p>
           </div>
 

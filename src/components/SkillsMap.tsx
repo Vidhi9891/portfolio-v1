@@ -10,8 +10,8 @@ const MAP_DATA = {
       title: 'DESIGN',
       pos: { top: '1%', left: '50%' }, // Perfectly symmetrical top
       color: '#f59e0b', // warm yellow
-      items: ['Figma', 'Wireframing', 'Visual Hierarchy', 'Design Systems', 'UI Thinking'],
-      description: 'Exploring how structure, clarity, and visual systems improve user experiences.',
+      items: ['Interface Design','Wireframing','Visual Hierarchy','Design Systems','Figma'],
+      description: 'Creating clarity through structure, hierarchy, and intentional interfaces.',
       doodle: (
         <svg className="w-7 h-7 opacity-80 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
           <rect x="2" y="2" width="20" height="20" rx="2" />
@@ -24,8 +24,8 @@ const MAP_DATA = {
       title: 'FRONTEND',
       pos: { top: '45%', left: '85%' }, // Perfectly symmetrical right
       color: '#3b82f6', // electric blue
-      items: ['HTML', 'CSS', 'JavaScript', 'React', 'Tailwind CSS', 'Vite'],
-      description: 'Building responsive and interactive experiences for the web.',
+      items: ['Component ArchitectureL', 'Responsive Layouts', 'JavaScript', 'React', 'Tailwind CSS', 'Vite','TypeScript','Motion & Interaction'],
+      description: 'Turning ideas into responsive and interactive experiences.',
       doodle: (
         <svg className="w-7 h-7 opacity-80 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
           <path d="M16 18l6-6-6-6M8 6L2 12l6 6M10 20l4-16" />
@@ -34,7 +34,7 @@ const MAP_DATA = {
     },
     {
       id: 'cs',
-      title: 'SYSTEMS',
+      title: 'COMPUTER SCIENCE',
       pos: { top: '89%', left: '50%' }, // Perfectly symmetrical bottom
       color: '#10b981', // mint
       items: ['C++', 'Data Structures', 'Algorithms', 'Problem Solving'],
@@ -54,8 +54,8 @@ const MAP_DATA = {
       title: 'CREATIVE',
       pos: { top: '45%', left: '15%' }, // Perfectly symmetrical left
       color: '#f97316', // orange
-      items: ['Video Editing', 'Storytelling', 'Motion', 'Visual Communication'],
-      description: 'Creative tools that influence how I communicate ideas and experiences.',
+      items: ['Video Editing', 'Storytelling', 'Visual Exploration', 'Creative Projects'],
+      description: 'Areas I enjoy exploring outside of code.',
       doodle: (
         <svg className="w-7 h-7 opacity-80 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
           <circle cx="12" cy="12" r="10" />
@@ -68,7 +68,8 @@ const MAP_DATA = {
 
 const SkillsMap: React.FC = () => {
   const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px 0px" });
+  // Setting once: false allows the animation to re-trigger
+  const isInView = useInView(containerRef, { once: false, margin: "-100px 0px" });
   
   const [phase1Complete, setPhase1Complete] = useState(false);
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
@@ -79,6 +80,9 @@ const SkillsMap: React.FC = () => {
         setPhase1Complete(true);
       }, 500);
       return () => clearTimeout(timer);
+    } else {
+      // Reset animation state when user scrolls away
+      setPhase1Complete(false);
     }
   }, [isInView]);
 
@@ -92,15 +96,11 @@ const SkillsMap: React.FC = () => {
         
         {/* HEADER */}
         <header className="mb-16 text-center md:text-left md:pl-10">
-          <p className="text-sm font-mono tracking-widest text-slate-400 mb-2 uppercase">
-            Current Foundations
-          </p>
-          <h2 className="text-3xl font-bold tracking-tight text-slate-50 md:text-4xl">
+          <h1 className="text-3xl font-bold tracking-tight text-slate-50 md:text-4xl">
             How I operate.
-          </h2>
+          </h1>
           <p className="mt-3 max-w-xl text-slate-400 leading-relaxed">
-            The areas I am actively developing and how they connect to one another. 
-            Hover over any category to unfold its details.
+            The areas I am actively developing and how they connect to one another.
           </p>
         </header>
 
