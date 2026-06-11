@@ -1,48 +1,109 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 
+// --- IMAGE ASSET IMPORTS ---
+import tamasha from "../assets/tamasha.png";
+import bluePeriod from "../assets/blue-period.png";
+import haikyuu from "../assets/haikyuu.png";
+import stargazing from "../assets/stargazing.png";
+import frieren from "../assets/frieren.png";
+
 // --- DATA & TYPES ---
-interface Ticket {
+interface PhotoPrint {
   id: number;
-  title: string;
+  src: string;
+  alt: string;
 }
 
-const initialTicketsData = [
-  { title: "Learning fundamentals" },
-  { title: "Designing interfaces" },
-  { title: "Building systems" },
-  { title: "Exploring direction" },
+// Order: tamasha -> bluePeriod -> haikyuu -> stargazing -> frieren
+const initialPhotosData = [
+  { src: tamasha, alt: "Tamasha" },
+  { src: bluePeriod, alt: "Blue Period" },
+  { src: haikyuu, alt: "Haikyuu" },
+  { src: stargazing, alt: "Stargazing" },
+  { src: frieren, alt: "Frieren" },
 ];
 
-// --- ANIMATION VARIANTS ---
+// --- ANIMATION VARIANTS (Untouched) ---
 const ticketVariants = {
   enter: { x: -20, opacity: 0, scale: 0.95 },
   center: { x: 0, opacity: 1, scale: 1, transition: { type: "spring", stiffness: 100, damping: 15 } },
   exit: { x: 50, opacity: 0, scale: 0.95, transition: { duration: 0.3 } },
 };
 
-// --- SUB-COMPONENT: TICKET CARD ---
-const TicketCard: React.FC<{ ticket: Ticket }> = ({ ticket }) => (
+// --- SUB-COMPONENT: PHOTO CARD ---
+const PhotoCard: React.FC<{ photo: PhotoPrint }> = ({ photo }) => (
   <motion.div
     layout
     variants={ticketVariants}
     initial="enter"
     animate="center"
     exit="exit"
-    className="flex-shrink-0 w-60 h-72 bg-[#fdfaf3] border border-gray-300 shadow-md rounded-lg p-4 flex flex-col justify-between"
+    className="flex-shrink-0 w-72 h-[22rem]"
   >
-    <div className="flex-grow bg-slate-100 border border-dashed border-slate-300 rounded mb-3 flex items-center justify-center text-slate-400 text-xs font-mono">
-      [ Snapshot View ]
-    </div>
-    <p className="font-mono text-xs uppercase tracking-wider text-slate-700 break-words text-center">
-      {ticket.title}
-    </p>
+    <img
+      src={photo.src}
+      alt={photo.alt}
+      className="w-full h-full object-contain"
+    />
   </motion.div>
 );
 
 // --- SUB-COMPONENT: PHOTO BOOTH FEED ---
+// const PhotoBoothFeed: React.FC = () => {
+//   const [photos, setPhotos] = useState<PhotoPrint[]>([]);
+//   const [currentIndex, setCurrentIndex] = useState(0);
+
+//   const containerRef = useRef<HTMLDivElement>(null);
+//   const isInView = useInView(containerRef, { margin: "-50px" });
+
+//   useEffect(() => {
+//     if (!isInView) return;
+
+//     // CHANGED: Increased the timeout delay here from 1500 to 2000 (2 seconds)
+//     const timer = setTimeout(() => {
+//       const dataIndex = currentIndex % initialPhotosData.length;
+//       const newPhoto: PhotoPrint = {
+//         id: currentIndex,
+//         src: initialPhotosData[dataIndex].src,
+//         alt: initialPhotosData[dataIndex].alt,
+//       };
+      
+//       setPhotos((prev) => [newPhoto, ...prev].slice(0, 8));
+//       setCurrentIndex((prev) => prev + 1);
+//     }, 2000); 
+
+//     return () => clearTimeout(timer);
+//   }, [currentIndex, isInView]);
+
+//   return (
+//     <div ref={containerRef} className="w-full max-w-5xl mx-auto px-4 py-8">
+//       <div className="flex flex-row items-center relative">
+        
+//         {/* Printer slot updated to use the system border color: rgba(255,248,231,0.15) */}
+//         <div className="flex-shrink-0 w-4 h-[22rem] bg-[#021A35] rounded-full shadow-inner relative z-20 border border-[#FFF8E7]/15">
+//           <div className="absolute inset-y-4 right-0 w-1 bg-black rounded-l opacity-50" />
+//         </div>
+
+//         <div className="flex-grow h-[26rem] overflow-hidden relative pl-4 flex items-center"
+//              style={{ WebkitMaskImage: 'linear-gradient(to right, black 85%, transparent 100%)' }}>
+//           <motion.div className="flex flex-row items-center gap-4 h-full">
+//             <AnimatePresence mode="popLayout">
+//               {photos.map((photo) => (
+//                 <PhotoCard key={photo.id} photo={photo} />
+//               ))}
+//             </AnimatePresence>
+//           </motion.div>
+//         </div>
+
+//       </div>
+//     </div>
+//   );
+// };
+
+// --- SUB-COMPONENT: PHOTO BOOTH FEED ---
 const PhotoBoothFeed: React.FC = () => {
-  const [tickets, setTickets] = useState<Ticket[]>([]);
+  const [photos, setPhotos] = useState<PhotoPrint[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -51,16 +112,20 @@ const PhotoBoothFeed: React.FC = () => {
   useEffect(() => {
     if (!isInView) return;
 
+    // 1s delay for the first photo, 2s for all subsequent photos
+    const delay = currentIndex === 0 ? 1000 : 2000;
+
     const timer = setTimeout(() => {
-      const dataIndex = currentIndex % initialTicketsData.length;
-      const newTicket: Ticket = {
+      const dataIndex = currentIndex % initialPhotosData.length;
+      const newPhoto: PhotoPrint = {
         id: currentIndex,
-        title: initialTicketsData[dataIndex].title,
+        src: initialPhotosData[dataIndex].src,
+        alt: initialPhotosData[dataIndex].alt,
       };
       
-      setTickets((prev) => [newTicket, ...prev].slice(0, 8));
+      setPhotos((prev) => [newPhoto, ...prev].slice(0, 8));
       setCurrentIndex((prev) => prev + 1);
-    }, 1500);
+    }, delay); 
 
     return () => clearTimeout(timer);
   }, [currentIndex, isInView]);
@@ -68,20 +133,23 @@ const PhotoBoothFeed: React.FC = () => {
   return (
     <div ref={containerRef} className="w-full max-w-5xl mx-auto px-4 py-8">
       <div className="flex flex-row items-center relative">
-        <div className="flex-shrink-0 w-4 h-72 bg-slate-800 rounded-full shadow-inner relative z-20 border border-slate-700">
+        
+        {/* Printer slot updated to use the system border color: rgba(255,248,231,0.15) */}
+        <div className="flex-shrink-0 w-4 h-[22rem] bg-[#021A35] rounded-full shadow-inner relative z-20 border border-[#FFF8E7]/15">
           <div className="absolute inset-y-4 right-0 w-1 bg-black rounded-l opacity-50" />
         </div>
 
-        <div className="flex-grow h-80 overflow-hidden relative pl-4 flex items-center" 
+        <div className="flex-grow h-[26rem] overflow-hidden relative pl-4 flex items-center"
              style={{ WebkitMaskImage: 'linear-gradient(to right, black 85%, transparent 100%)' }}>
           <motion.div className="flex flex-row items-center gap-4 h-full">
             <AnimatePresence mode="popLayout">
-              {tickets.map((ticket) => (
-                <TicketCard key={ticket.id} ticket={ticket} />
+              {photos.map((photo) => (
+                <PhotoCard key={photo.id} photo={photo} />
               ))}
             </AnimatePresence>
           </motion.div>
         </div>
+
       </div>
     </div>
   );
@@ -90,23 +158,29 @@ const PhotoBoothFeed: React.FC = () => {
 // --- MAIN HERO ---
 const Hero: React.FC = () => {
   return (
-    <section className="relative w-full min-h-screen flex flex-col justify-center pt-24 pb-12 overflow-hidden bg-white text-slate-900 font-sans">
+    // Background: #053264 | Default Text: #FFF8E7 | Default Font: Inter
+    <section className="relative w-full min-h-screen flex flex-col justify-center pt-24 pb-12 overflow-hidden bg-[#053264] text-[#FFF8E7] font-['Inter']">
       <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 flex flex-col gap-6 mb-2">
         <div className="max-w-2xl">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight !text-slate-900 mb-3">
+          {/* Main heading: Space Grotesk | #FFF8E7 */}
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#FFF8E7] mb-3 font-['Space_Grotesk']">
             Vidhi Tiwari
           </h1>
-          <h2 className="text-lg md:text-xl !text-slate-700 font-mono font-semibold tracking-tight mb-6">
+          {/* Subheading: Space Grotesk | Accent Blue #95BBEA */}
+          <h2 className="text-lg md:text-xl text-[#95BBEA] font-semibold tracking-tight mb-6 font-['Space_Grotesk']">
             Frontend. Design. Systems.
           </h2>
-          <p className="text-base md:text-lg text-slate-600 leading-relaxed mb-8 max-w-4xl">
-            Exploring frontend development, design, and the craft of creating things people enjoy using. Every project is another step toward becoming a better builder.
+          {/* Body text: Inter | Secondary Text #B8C5D6 */}
+          <p className="text-base md:text-lg text-[#B8C5D6] leading-relaxed mb-8 max-w-4xl font-['Inter']">
+            Building projects while learning how design, code, and problem-solving come together to create experiences people enjoy using.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a href="#projects" className="inline-flex justify-center items-center bg-slate-900 text-white px-7 py-3 rounded-lg font-medium hover:bg-slate-800 transition-colors shadow-sm active:scale-95">
+          <div className="flex flex-col sm:flex-row gap-4 font-['Space_Grotesk']">
+            {/* Primary Button: Accent Background, Deep Blue Text */}
+            <a href="#projects" className="inline-flex justify-center items-center bg-[#95BBEA] text-[#053264] px-7 py-3 rounded-lg font-bold hover:bg-[#B8C5D6] transition-colors shadow-sm active:scale-95">
               View Projects
             </a>
-            <a href="#about" className="inline-flex justify-center items-center bg-white text-slate-700 border border-slate-300 px-7 py-3 rounded-lg font-medium hover:bg-slate-50 transition-colors active:scale-95">
+            {/* Secondary Button: Transparent Background, Cream Border, Cream Text */}
+            <a href="#about" className="inline-flex justify-center items-center bg-transparent text-[#FFF8E7] border border-[#FFF8E7]/30 px-7 py-3 rounded-lg font-bold hover:bg-[#FFF8E7]/10 transition-colors active:scale-95">
               About Me
             </a>
           </div>

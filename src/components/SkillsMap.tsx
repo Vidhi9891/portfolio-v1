@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
-// --- DATA STRUCTURE WITH NATIVE BLUEPRINT DOODLES ---
+// --- DATA STRUCTURE WITH UPDATED SYSTEM COLORS ---
 const MAP_DATA = {
   center: "CURRENT FOUNDATIONS",
   nodes: [
     {
       id: 'design',
       title: 'DESIGN',
-      pos: { top: '1%', left: '50%' }, // Perfectly symmetrical top
-      color: '#f59e0b', // warm yellow
+      pos: { top: '15%', left: '20%' },
+      color: '#95BBEA', // Accent Blue
       items: ['Interface Design','Wireframing','Visual Hierarchy','Design Systems','Figma'],
       description: 'Creating clarity through structure, hierarchy, and intentional interfaces.',
       doodle: (
@@ -22,9 +22,9 @@ const MAP_DATA = {
     {
       id: 'frontend',
       title: 'FRONTEND',
-      pos: { top: '45%', left: '85%' }, // Perfectly symmetrical right
-      color: '#3b82f6', // electric blue
-      items: ['Component ArchitectureL', 'Responsive Layouts', 'JavaScript', 'React', 'Tailwind CSS', 'Vite','TypeScript','Motion & Interaction'],
+      pos: { top: '12%', left: '80%' },
+      color: '#FFA62B', // Orange/Yellow
+      items: ['Component Architecture', 'Responsive Layouts', 'JavaScript', 'React', 'Tailwind CSS', 'Vite','TypeScript','Motion & Interaction'],
       description: 'Turning ideas into responsive and interactive experiences.',
       doodle: (
         <svg className="w-7 h-7 opacity-80 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -35,8 +35,8 @@ const MAP_DATA = {
     {
       id: 'cs',
       title: 'COMPUTER SCIENCE',
-      pos: { top: '89%', left: '50%' }, // Perfectly symmetrical bottom
-      color: '#10b981', // mint
+      pos: { top: '60%', left: '20%' },
+      color: '#CCFFBC', // Mint
       items: ['C++', 'Data Structures', 'Algorithms', 'Problem Solving'],
       description: 'Strengthening the foundations that support scalable thinking and implementation.',
       doodle: (
@@ -52,8 +52,8 @@ const MAP_DATA = {
     {
       id: 'creative',
       title: 'CREATIVE',
-      pos: { top: '45%', left: '15%' }, // Perfectly symmetrical left
-      color: '#f97316', // orange
+      pos: { top: '55%', left: '80%' },
+      color: '#F8E6A0', // Warm Yellow
       items: ['Video Editing', 'Storytelling', 'Visual Exploration', 'Creative Projects'],
       description: 'Areas I enjoy exploring outside of code.',
       doodle: (
@@ -68,7 +68,6 @@ const MAP_DATA = {
 
 const SkillsMap: React.FC = () => {
   const containerRef = useRef(null);
-  // Setting once: false allows the animation to re-trigger
   const isInView = useInView(containerRef, { once: false, margin: "-100px 0px" });
   
   const [phase1Complete, setPhase1Complete] = useState(false);
@@ -81,7 +80,6 @@ const SkillsMap: React.FC = () => {
       }, 500);
       return () => clearTimeout(timer);
     } else {
-      // Reset animation state when user scrolls away
       setPhase1Complete(false);
     }
   }, [isInView]);
@@ -89,17 +87,18 @@ const SkillsMap: React.FC = () => {
   return (
     <section 
       ref={containerRef}
-      className="w-full py-24 bg-transparent text-slate-200 font-sans"
+      // Main Background: #053264
+      className="w-full py-24 bg-[#053264] text-[#FFF8E7] font-['Inter']"
       id="foundations"
     >
       <div className="max-w-6xl mx-auto px-6">
         
         {/* HEADER */}
         <header className="mb-16 text-center md:text-left md:pl-10">
-          <h1 className="text-3xl font-bold tracking-tight text-slate-50 md:text-4xl">
+          <h1 className="text-3xl font-bold tracking-tight text-[#FFF8E7] md:text-4xl font-['Space_Grotesk']">
             How I operate.
           </h1>
-          <p className="mt-3 max-w-xl text-slate-400 leading-relaxed">
+          <p className="mt-3 max-w-xl text-[#B8C5D6] leading-relaxed font-['Inter']">
             The areas I am actively developing and how they connect to one another.
           </p>
         </header>
@@ -107,17 +106,26 @@ const SkillsMap: React.FC = () => {
         {/* MOBILE LAYOUT */}
         <div className="flex flex-col gap-6 md:hidden relative z-10">
           {MAP_DATA.nodes.map((node) => (
-            <div key={`mobile-${node.id}`} className="bg-[#131d3b] border border-slate-700/50 p-6 rounded-none ">
+            <div 
+              key={`mobile-${node.id}`} 
+              style={{ backgroundColor: node.color }} 
+              className="border border-[rgba(255,248,231,0.15)] p-6 rounded-none shadow-sm"
+            >
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-lg font-bold font-mono tracking-widest" style={{ color: node.color }}>
+                
+                {/* 1. MOBILE HEADING CHANGE HERE - Added the exclamation mark (!) */}
+                <h3 className="text-lg font-bold tracking-widest font-['JetBrains_Mono'] !text-[#053264]">
                   {node.title}
                 </h3>
-                <div style={{ color: node.color }}>{node.doodle}</div>
+                
+                <div className="text-[#053264]">{node.doodle}</div>
               </div>
-              <p className="text-sm text-slate-400 mb-4">{node.description}</p>
-              <div className="flex flex-wrap gap-2">
+              <p className="text-sm text-[#053264]/90 mb-4 font-medium font-['Inter']">
+                {node.description}
+              </p>
+              <div className="flex flex-wrap gap-2 font-['JetBrains_Mono']">
                 {node.items.map(item => (
-                  <span key={item} className="text-[11px] font-mono bg-[#1a274a] text-slate-300 px-2 py-1 rounded border border-slate-700/50">
+                  <span key={item} className="text-[11px] bg-[#053264]/10 text-[#053264] px-2 py-1 rounded border border-[#053264]/20 font-semibold">
                     {item}
                   </span>
                 ))}
@@ -127,10 +135,7 @@ const SkillsMap: React.FC = () => {
         </div>
 
         {/* DESKTOP LAYOUT (Architectural Network with 3D Tickets) */}
-        {/* Increased height to 900px to ensure the unfold animation never clips */}
-        <div 
-          className="hidden md:block relative w-full h-[900px] mx-auto bg-[#0b132b] border border-slate-800 rounded-xl overflow-visible "
-        >
+        <div className="hidden md:block relative w-full h-[900px] mx-auto overflow-visible">
           
           {/* SVG Connecting Strings */}
           <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
@@ -142,11 +147,11 @@ const SkillsMap: React.FC = () => {
                 <motion.line
                   key={`line-${node.id}`}
                   x1="50%"
-                  y1="45%" // Anchored to the new 45% center
+                  y1="45%" 
                   x2={node.pos.left}
                   y2={node.pos.top}
-                  stroke={isHovered ? node.color : '#334155'}
-                  strokeWidth={isHovered ? 2 : 1.5}
+                  stroke={isHovered ? '#95BBEA' : 'rgba(149, 187, 234, 0.3)'}
+                  strokeWidth={isHovered ? 2.5 : 1.5}
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={phase1Complete ? { 
                     pathLength: 1, 
@@ -160,13 +165,12 @@ const SkillsMap: React.FC = () => {
 
           {/* Center Anchor Node */}
           <motion.div
-            // Moved to top-[45%] to perfectly balance the layout
             className="absolute top-[45%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 100, damping: 15 }}
           >
-            <div className="bg-[#131d3b] text-slate-100 border border-slate-600 px-6 py-4 flex flex-col items-center justify-center tracking-widest font-bold font-mono text-center w-56">
+            <div className="bg-[#FFF8E7] text-[#053264] border border-[rgba(255,248,231,0.15)] px-6 py-4 flex flex-col items-center justify-center tracking-widest font-bold font-['JetBrains_Mono'] text-center w-56 shadow-sm">
               {MAP_DATA.center}
             </div>
           </motion.div>
@@ -179,12 +183,11 @@ const SkillsMap: React.FC = () => {
             return (
               <motion.div
                 key={node.id}
-                // When hovered, bring to the absolute front so it never goes behind other lines
                 className={`absolute flex flex-col items-center ${isHovered ? 'z-50' : 'z-30'}`}
                 style={{ top: node.pos.top, left: node.pos.left, x: '-50%', y: '-50%', perspective: '1200px' }}
                 animate={phase1Complete ? { 
                   opacity: isDimmed ? 0.4 : 1,
-                  scale: isHovered ? 1.05 : 1
+                  scale: isHovered ? 1.05 : 1 
                 } : { opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 onMouseEnter={() => setHoveredNode(node.id)}
@@ -192,20 +195,22 @@ const SkillsMap: React.FC = () => {
               >
                 
                 {/* 1. TICKET TOP (Always Visible) */}
-                {/* Dynamically switches from fully rounded to top-rounded on hover */}
                 <div 
-                  className={`w-56 bg-[#0f172a] border px-4 py-5 flex flex-col items-center justify-center relative z-20 transition-all duration-300
+                  className={`w-56 border px-4 py-5 flex flex-col items-center justify-center relative z-20 transition-all duration-300 shadow-sm
                     ${isHovered ? 'rounded-t-xl border-b-0' : 'rounded-xl border-b'}
                   `}
                   style={{ 
-                    borderColor: isHovered ? node.color : '#334155',
-                    
+                    backgroundColor: node.color,
+                    borderColor: isHovered ? 'rgba(5, 50, 100, 0.4)' : 'rgba(255,248,231,0.15)',
                   }}
                 >
-                  <div style={{ color: node.color }}>{node.doodle}</div>
-                  <h3 className="font-mono text-[13px] tracking-widest font-bold uppercase mt-2 text-center" style={{ color: node.color }}>
+                  <div className="text-[#053264]">{node.doodle}</div>
+                  
+                  {/* 2. DESKTOP HEADING CHANGE HERE - Added the exclamation mark (!) */}
+                  <h3 className="font-['JetBrains_Mono'] text-[13px] tracking-widest font-bold uppercase mt-2 text-center !text-[#053264]">
                     {node.title}
                   </h3>
+                  
                 </div>
 
                 {/* 2. TICKET FOLD-OUT BOTTOM (Animates down from the back) */}
@@ -214,43 +219,38 @@ const SkillsMap: React.FC = () => {
                   animate={isHovered ? { rotateX: 0, opacity: 1 } : { rotateX: -90, opacity: 0 }}
                   transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
                   style={{ transformOrigin: 'top center', transformStyle: 'preserve-3d' }}
-                  className="absolute top-full left-0 w-56 z-10 flex flex-col "
+                  className="absolute top-full left-0 w-56 z-10 flex flex-col shadow-lg"
                 >
                   
-                  {/* The Perforated Hinge (Perfect semi-circle cutouts) */}
+                  {/* The Perforated Hinge */}
                   <div 
-                    className="relative h-6 bg-[#0f172a] border-x transition-colors duration-300 flex items-center"
-                    style={{ borderColor: isHovered ? node.color : '#334155' }}
+                    className="relative h-6 border-x transition-colors duration-300 flex items-center"
+                    style={{ backgroundColor: node.color, borderColor: isHovered ? 'rgba(5, 50, 100, 0.4)' : 'rgba(255,248,231,0.15)' }}
                   >
-                    {/* Left Arc Cutout (Uses page bg color to look like a hole) */}
                     <div 
-                      className="absolute -left-[1px] w-3 h-6 bg-[#0b132b] rounded-r-full border-r border-y transition-colors duration-300" 
-                      style={{ borderColor: isHovered ? node.color : '#334155' }}
+                      className="absolute -left-[1px] w-3 h-6 bg-[#053264] rounded-r-full border-r border-y transition-colors duration-300" 
+                      style={{ borderColor: isHovered ? 'rgba(5, 50, 100, 0.4)' : 'rgba(255,248,231,0.15)' }}
                     />
-                    
-                    {/* Faint Dashed Perforation Line connecting the arcs */}
-                    <div className="w-full border-t border-dashed mx-3 opacity-30" style={{ borderColor: isHovered ? node.color : '#334155' }} />
-                    
-                    {/* Right Arc Cutout */}
+                    <div className="w-full border-t border-dashed mx-3 opacity-30 border-[#053264]" />
                     <div 
-                      className="absolute -right-[1px] w-3 h-6 bg-[#0b132b] rounded-l-full border-l border-y transition-colors duration-300" 
-                      style={{ borderColor: isHovered ? node.color : '#334155' }}
+                      className="absolute -right-[1px] w-3 h-6 bg-[#053264] rounded-l-full border-l border-y transition-colors duration-300" 
+                      style={{ borderColor: isHovered ? 'rgba(5, 50, 100, 0.4)' : 'rgba(255,248,231,0.15)' }}
                     />
                   </div>
 
                   {/* The Long Info Rectangle */}
                   <div 
-                    className="bg-[#0f172a] border-x border-b rounded-b-xl p-5 transition-colors duration-300"
-                    style={{ borderColor: isHovered ? node.color : '#334155' }}
+                    className="border-x border-b rounded-b-xl p-5 transition-colors duration-300"
+                    style={{ backgroundColor: node.color, borderColor: isHovered ? 'rgba(5, 50, 100, 0.4)' : 'rgba(255,248,231,0.15)' }}
                   >
-                    <p className="text-[13px] text-slate-300 mb-5 leading-relaxed text-left">
+                    <p className="font-['Inter'] text-[13px] text-[#053264]/90 font-medium mb-5 leading-relaxed text-left">
                       {node.description}
                     </p>
-                    <ul className="flex flex-wrap gap-1.5 justify-start">
+                    <ul className="flex flex-wrap gap-1.5 justify-start font-['JetBrains_Mono']">
                       {node.items.map(item => (
                         <li 
                           key={item} 
-                          className="text-[10px] font-mono bg-[#131d3b] text-slate-300 px-2 py-1 rounded-sm border border-slate-700/60"
+                          className="text-[10px] bg-[#053264]/10 text-[#053264] px-2 py-1 rounded-sm border border-[#053264]/20 font-semibold tracking-wide"
                         >
                           {item}
                         </li>

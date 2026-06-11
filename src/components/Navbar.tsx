@@ -43,16 +43,15 @@ function Navbar() {
       >
         <a href="#home" className="px-2">
           <span className="text-sm font-bold tracking-tight text-slate-100 hover:text-blue-400 transition-colors">
-            <a href="#photoboothfeed" className="hover:text-blue-400 transition-colors">Vidhi Tiwari</a>
+            <a href="hero" className="hover:text-blue-400 transition-colors">Vidhi Tiwari</a>
           </span>
         </a>
         
         <div className="flex gap-8 text-xs font-bold tracking-widest uppercase text-slate-300 px-2">
-          
-          <a href="#about" className="hover:text-blue-400 transition-colors">About</a>
-          <a href="#skillsmap" className="hover:text-blue-400 transition-colors">Skills</a>
-          <a href="#projects" className="hover:text-blue-400 transition-colors">Work</a>
-          <a href="#contact" className="hover:text-blue-400 transition-colors">Contact</a>
+         <a href="#about" className="hover:text-[#95BBEA] transition-colors">About</a>
+          <a href="#foundations" className="hover:text-[#95BBEA] transition-colors">Skills</a>
+          <a href="#projects" className="hover:text-[#95BBEA] transition-colors">Work</a>
+          <a href="#contact" className="hover:text-[#95BBEA] transition-colors">Contact</a>
         </div>
       </motion.nav>
     </motion.header>
