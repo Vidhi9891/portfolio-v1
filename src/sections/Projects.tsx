@@ -24,8 +24,8 @@ function Projects() {
       description:
         "A custom-built, responsive portfolio designed to showcase technical projects and design system expertise. Engineered for performance and maintainability.",
       techStack: ["React", "TypeScript", "Tailwind CSS", "Vite"],
-      github: "#",
-      liveDemo: "#",
+      github: "https://github.com/Vidhi9891/portfolio-v1",
+      liveDemo: "https://portfolio-v1-eight-ebon.vercel.app",
       tabColor: "bg-[#0D5C9D]",
     },
     {
@@ -34,8 +34,8 @@ function Projects() {
       description:
         "I am currently focused on building tools that improve my frontend engineering skills and understanding of product development. These areas represent my current development roadmap.",
       techStack: ["React", "TypeScript", "APIs", "Accessibility"],
-      github: "#",
-      liveDemo: "#",
+      github: "",
+      liveDemo: "",
       tabColor: "bg-[#ECC412]",
     },
 
@@ -363,21 +363,29 @@ function Projects() {
                         </div>
 
                         <div className="mt-6 flex flex-wrap gap-3 font-['JetBrains_Mono']">
-                          <a
-                            href={project.github}
-                            onClick={(e) => e.stopPropagation()}
-                            className="px-5 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-200 shadow-sm bg-[#053264] text-[#FFF8E7] hover:bg-[#053264]/90"
-                          >
-                            GitHub
-                          </a>
+                          {project.github && (
+                            <a
+                              href={project.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="px-5 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-200 shadow-sm bg-[#053264] text-[#FFF8E7] hover:bg-[#053264]/90"
+                            >
+                              GitHub
+                            </a>
+                          )}
 
-                          <a
-                            href={project.liveDemo}
-                            onClick={(e) => e.stopPropagation()}
-                            className="px-5 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-200 border border-[#053264]/30 bg-transparent text-[#053264] hover:bg-[#053264]/10"
-                          >
-                            Live Demo
-                          </a>
+                          {project.liveDemo && (
+                            <a
+                              href={project.liveDemo}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="px-5 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-200 border border-[#053264]/30 bg-transparent text-[#053264] hover:bg-[#053264]/10"
+                            >
+                              Live Demo
+                            </a>
+                          )}
                         </div>
 
                         {todoMessage && (

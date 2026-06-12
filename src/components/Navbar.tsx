@@ -43,7 +43,7 @@ function Navbar() {
       >
         <a href="#home" className="px-2">
           <span className="text-sm font-bold tracking-tight text-slate-100 hover:text-blue-400 transition-colors">
-            <a href="hero" className="hover:text-blue-400 transition-colors">Vidhi Tiwari</a>
+            <a href="#home" className="hover:text-blue-400 transition-colors">Vidhi Tiwari</a>
           </span>
         </a>
         

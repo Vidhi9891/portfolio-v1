@@ -9,6 +9,7 @@ import haikyuu from "../assets/haikyuu.webp";
 import stargazing from "../assets/stargazing.webp";
 import frieren from "../assets/frieren.webp";
 
+
 // --- DATA & TYPES ---
 interface PhotoPrint {
   id: number;
@@ -162,7 +163,9 @@ const PhotoBoothFeed: React.FC = () => {
 const Hero: React.FC = () => {
   return (
     // Background: #053264 | Default Text: #FFF8E7 | Default Font: Inter
-    <section className="relative w-full min-h-screen flex flex-col justify-center pt-24 pb-12 overflow-hidden bg-[#053264] text-[#FFF8E7] font-['Inter']">
+    <section 
+      id="home"
+       className="relative w-full min-h-screen flex flex-col justify-center pt-24 pb-12 overflow-hidden bg-[#053264] text-[#FFF8E7] font-['Inter']">
       <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 flex flex-col gap-6 mb-2">
         <div className="max-w-2xl">
           {/* Main heading: Space Grotesk | #FFF8E7 */}
