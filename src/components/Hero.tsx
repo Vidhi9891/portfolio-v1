@@ -3,11 +3,11 @@ import { motion, AnimatePresence, useInView } from 'framer-motion';
 import type { Variants } from "framer-motion";
 
 // --- IMAGE ASSET IMPORTS ---
-import tamasha from "../assets/tamasha.png";
-import bluePeriod from "../assets/blue-period.png";
-import haikyuu from "../assets/haikyuu.png";
-import stargazing from "../assets/stargazing.png";
-import frieren from "../assets/frieren.png";
+import tamasha from "../assets/tamasha.webp";
+import bluePeriod from "../assets/blue-period.webp";
+import haikyuu from "../assets/haikyuu.webp";
+import stargazing from "../assets/stargazing.webp";
+import frieren from "../assets/frieren.webp";
 
 // --- DATA & TYPES ---
 interface PhotoPrint {

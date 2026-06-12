@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion"
-import postcardPhoto from "../assets/postcard.png";
-import photo from "../assets/vidhi.png";
+import postcardPhoto from "../assets/postcard.webp";
+import photo from "../assets/vidhi.webp";
 
 // --- ANIMATION VARIANTS ---
 // This handles the "Queue / FIFO" staggering effect
