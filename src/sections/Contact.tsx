@@ -33,7 +33,7 @@ export default function Contact() {
         </h1>
 
         <p className="text-lg md:text-xl text-[#B8C5D6] leading-relaxed max-w-4xl font-['Inter']">
-          Whether it's frontend development, design systems, UI engineering, or simply exchanging ideas, I'm always open to thoughtful conversations and opportunities to learn.
+          I'm currently focused on learning, building projects, and growing as a frontend developer. If you'd like to discuss opportunities, collaborate on something interesting, or simply connect, I'd be happy to hear from you.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-6 font-['Space_Grotesk']">
@@ -41,7 +41,7 @@ export default function Contact() {
             href="mailto:vidhitiwari9891@gmail.com"
             className="inline-flex justify-center items-center px-10 py-4 rounded-lg bg-[#95BBEA] text-[#053264] font-bold text-sm tracking-wide hover:bg-[#B8C5D6] transition-all duration-300 shadow-md active:scale-95"
           >
-            Get In Touch
+            Email Me
           </a>
           
           {/* Note: Ensure resume.pdf is in your /public folder */}

@@ -168,20 +168,20 @@ const Hero: React.FC = () => {
           </h1>
           {/* Subheading: Space Grotesk | Accent Blue #95BBEA */}
           <h2 className="text-lg md:text-xl text-[#95BBEA] font-semibold tracking-tight mb-6 font-['Space_Grotesk']">
-            Frontend. Design. Systems.
+            Building responsive web applications with React, TypeScript, and a growing interest in design systems.
           </h2>
           {/* Body text: Inter | Secondary Text #B8C5D6 */}
           <p className="text-base md:text-lg text-[#B8C5D6] leading-relaxed mb-8 max-w-4xl font-['Inter']">
-            Building projects while learning how design, code, and problem-solving come together to create experiences people enjoy using.
-          </p>
+            Computer Science student focused on frontend development and UI engineering. Currently building projects, strengthening engineering fundamentals, and exploring how thoughtful design and implementation create better user experiences.
+            </p>
           <div className="flex flex-col sm:flex-row gap-4 font-['Space_Grotesk']">
             {/* Primary Button: Accent Background, Deep Blue Text */}
             <a href="#projects" className="inline-flex justify-center items-center bg-[#95BBEA] text-[#053264] px-7 py-3 rounded-lg font-bold hover:bg-[#B8C5D6] transition-colors shadow-sm active:scale-95">
               View Projects
             </a>
             {/* Secondary Button: Transparent Background, Cream Border, Cream Text */}
-            <a href="#about" className="inline-flex justify-center items-center bg-transparent text-[#FFF8E7] border border-[#FFF8E7]/30 px-7 py-3 rounded-lg font-bold hover:bg-[#FFF8E7]/10 transition-colors active:scale-95">
-              About Me
+            <a href="#contact" className="inline-flex justify-center items-center bg-transparent text-[#FFF8E7] border border-[#FFF8E7]/30 px-7 py-3 rounded-lg font-bold hover:bg-[#FFF8E7]/10 transition-colors active:scale-95">
+              Get In Touch
             </a>
           </div>
         </div>
