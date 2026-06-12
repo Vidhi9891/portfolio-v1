@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion"
 import postcardPhoto from "../assets/postcard.png";
 import photo from "../assets/vidhi.png";
 
 // --- ANIMATION VARIANTS ---
 // This handles the "Queue / FIFO" staggering effect
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -15,7 +16,7 @@ const containerVariants = {
   },
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
+import type { Variants } from "framer-motion";
 
 // --- IMAGE ASSET IMPORTS ---
 import tamasha from "../assets/tamasha.png";
@@ -24,8 +25,10 @@ const initialPhotosData = [
   { src: frieren, alt: "Frieren" },
 ];
 
-// --- ANIMATION VARIANTS (Untouched) ---
-const ticketVariants = {
+// --- ANIMATION VARIANTS--
+
+const ticketVariants: Variants = {
+
   enter: { x: -20, opacity: 0, scale: 0.95 },
   center: { x: 0, opacity: 1, scale: 1, transition: { type: "spring", stiffness: 100, damping: 15 } },
   exit: { x: 50, opacity: 0, scale: 0.95, transition: { duration: 0.3 } },

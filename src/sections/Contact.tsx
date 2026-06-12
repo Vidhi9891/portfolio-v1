@@ -1,5 +1,3 @@
-import React from 'react';
-
 // Minimal monochrome SVG icons (Kept as is)
 const GithubIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
